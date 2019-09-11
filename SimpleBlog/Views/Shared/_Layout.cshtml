@@ -1,0 +1,73 @@
+﻿@using System.Web.Optimization
+
+@{
+    Layout = null;    
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpleBlog - @ViewBag.Title</title>
+    @Styles.Render("~/styles")
+    
+</head>
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1>
+                    <a href="@Url.RouteUrl("home")" class="navbar-brand">Simple Blog</a>
+                    <i class="glyphicon glyphicon-bell"></i>
+                </h1>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content" style="padding-top:35px">
+        <header>
+            <!-- User property allows us to get the current user on a current thread set by ASP.Net -->
+            @if(User.Identity.IsAuthenticated)
+            {
+                <p>Welcome back @User.Identity.Name</p>
+                
+                if(User.IsInRole("admin"))
+                {
+                    <a href="@Url.Action("Index", "Posts", new {area="admin" })">View Admin Posts</a>
+                }
+
+                <br />
+                <a href="@Url.RouteUrl("logout")">Logout</a>
+            }
+            else
+            {
+                <a href="@Url.RouteUrl("login")">Login</a>
+            }
+
+        </header>
+
+        <div>
+            @RenderBody()
+        </div>
+
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/scripts")
+    @RenderSection("Scripts", required: false);
+    
+</body>
+</html>

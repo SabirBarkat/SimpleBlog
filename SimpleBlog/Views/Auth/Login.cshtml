@@ -1,0 +1,31 @@
+﻿@*** ModelBinding => Bind "AuthLogin" class to "Model" property of the current view ***@
+@model SimpleBlog.ViewModels.AuthLogin
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using(Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    
+    <div>
+        @Html.LabelFor(x => x.Username)
+        @Html.EditorFor(x => x.Username)
+    </div>
+    
+    <div>
+        @Html.LabelFor(x => x.Password)
+        @Html.EditorFor(x => x.Password)
+    </div>
+    
+    <div>
+        <input type="submit" value="Login" />
+    </div>
+}
+
+@*<form method="post">
+    <input type="text" name="Username" />
+    <input type="password" name="Password" />
+    <input type="submit" value="Login" />
+</form>*@

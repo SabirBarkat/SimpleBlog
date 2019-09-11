@@ -1,0 +1,38 @@
+01-11 Done
+
+
+BUNDLING: 
+========================================================
+1. Microsoft ASP.NET Web Optimization Framework (NuGet)
+2. BundleConfig.cs
+
+using System.Web.Optimization;
+
+namespace SimpleBlog
+{
+    public class BundleConfig
+    {
+        public static void RegisterBundle(BundleCollection bundles)
+        {
+            bundles.Add(new StyleBundle("~/admin/styles")
+                .Include("~/Content/bootstrap.css")
+                .Include("~/Content/admin.css"));
+
+            bundles.Add(new ScriptBundle("~/scripts")
+                .Include("~/scripts/jquery-3.4.1.js")
+                .Include("~/scripts/jquery.validate.js")
+                .Include("~/scripts/jquery.validate.unobtrusive.js")
+                .Include("~/scripts/bootstrap.js"));
+
+        }
+    } // class
+}
+
+Layout
+------
+3. Add @using System.Web.Optimization
+4. @Styles.Render("virtualPathName")
+5. @Scripts.Render("virtualPathName")
+
+6. Microsoft jQuery Unobtrusive Validation (NuGet) - adds client-side validation to any of our model that 
+has Data Annotations attached to it.
